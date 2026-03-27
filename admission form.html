@@ -116,9 +116,60 @@
         .btn-main:hover { background: #003a7a; transform: translateY(-2px); }
 
         @media (max-width: 768px) { .grid-2, .grid-3 { grid-template-columns: 1fr; } }
+        /* Add this inside the <style> tag of each file in Group 1 */
+@media screen and (max-width: 600px) {
+    /* 1. Make the main container take full width */
+    .container, .form-card, .dashboard-wrapper {
+        width: 95% !important;
+        padding: 15px !important;
+        margin: 10px auto !important;
+    }
+
+    /* 2. Stack form inputs vertically */
+    input, select, textarea, button {
+        width: 100% !important;
+        font-size: 16px !important; /* Prevents auto-zoom on iPhone */
+        height: 45px !important;
+    }
+
+    /* 3. Special fix for the ID Generator & Results */
+    /* This shrinks the ID card so it fits on a Spark or small phone */
+    .id-card, .result-slip {
+        transform: scale(0.8); 
+        transform-origin: top center;
+        margin-bottom: -40px; 
+    }
+}
     </style>
+   
 </head>
 <body>
+    <div id="menu-icon" onclick="toggleNav()">
+    <span></span>
+    <span></span>
+    <span></span>
+</div>
+
+<div id="mySidebar" class="sidebar">
+    <a href="javascript:void(0)" class="closebtn" onclick="toggleNav()">×</a>
+    <div class="sidebar-logo">
+        <img src="IMAGES/logo.jpg.jpeg"FFA Logo" width="100">
+        <h3>FFA ADMIN</h3>
+    </div>
+    <a href="index.html" class="nav-item">Dashboard Home</a>
+        <a href="idgenerator.html" class="nav-item active">ID Card Generator</a>
+        <a href="students-list.html" class="nav-item">Student Database</a>
+        <a href="admissions.html" class="nav-item">New Admissions</a>
+        <a href="gallery.html" class="nav-item">Gallery</a>
+         <a href="results.html" class="nav-item">Results</a>
+          <a href="staffdashboard.html" class="nav-item">staffdashboard</a>
+            <a href="tahfiz.html" class="nav-item">Tahfiz</a>
+             <a href="about.html" class="nav-item">About</a>
+              <a href="admin.html" class="nav-item">Admin</a>
+               <a href="contact.html" class="nav-item">contact</a>
+              <a href="examination.html" class="nav-item">examination</a>
+               <a href="admission form.html" class="nav-item">admission form</a>
+</div>
 
 <div class="container">
     <header class="school-header">
@@ -245,6 +296,17 @@
     </div>
 </form>
 </div>
+<script>
+    function toggleNav() {
+    var sidebar = document.getElementById("mySidebar");
+    
+    if (sidebar.style.left === "0px") {
+        sidebar.style.left = "-250px"; // Hide it
+    } else {
+        sidebar.style.left = "0px";    // Show it
+    }
+}
+    </script>
 
 </body>
 </html>

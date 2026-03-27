@@ -1,8 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <title>Gallery - Fatima Farida Academy</title>
+    <title>Student Portal - Fatima Farida Academy</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
     <div id="menu-icon" onclick="toggleNav()">
@@ -34,17 +37,30 @@
 </div>
     
     <div class="container">
-        <h2 class="section-title">School Life in Pictures</h2>
-        <div class="gallery-grid">
-            <img src="https://via.placeholder.com/400x300?text=Playground" alt="Playground">
-            <img src="https://via.placeholder.com/400x300?text=Classroom" alt="Classroom">
-            <img src=IMAGES/staff1.jpeg alt="Staff"><img src=IMAGES/staff2.jpeg alt="Staff"><img src=IMAGES/staff3.jpeg alt="Staff"><img src=IMAGES/staff4.jpeg alt="Staff"><img src=IMAGES/staff5.jpeg alt="Staff">
-            <img src="https://via.placeholder.com/400x300?text=School+Front" alt="Front View">
-            <img src=IMAGES/students1.jpg.jpeg alt="students group photo"><img src=IMAGES/students2.jpg.jpeg alt="students group photo"><img src=IMAGES/students3.jpeg alt="students group photo">
-            <img src=IMAGES/students4.jpeg alt="students group photo">
-            
-            <img src="https://via.placeholder.com/400x300?text=Laboratory" alt="Lab">
+        <h2 class="section-title">Student Records & Fees</h2>
+        
+        <div style="background: #fff; padding: 20px; border-radius: 8px; margin-bottom: 30px; border: 1px solid #ddd; text-align: center;">
+            <h3>Check Student Status</h3>
+            <input type="text" placeholder="Enter Index Number (e.g. FFA-2026-001)" style="padding: 10px; width: 300px; border: 1px solid #ccc; border-radius: 4px;">
+            <button class="btn" style="padding: 10px 20px;">Search</button>
         </div>
+
+        <h3>General Fee Structure (2026)</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Class</th>
+                    <th>Boarding Tuition Fee (GHS)</th>
+                    <th>Day Tuition Fee (GHS)</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>Nursery</td><td>6,500.00</td><td>3,700.00</td></tr>
+                <tr><td>Primary</td><td>6,500.00</td><td>3,700.00</td></tr>
+                <tr><td>JHS</td><td>6,500.00</td><td>3,700.00</td></tr>
+            </tbody>
+        </table>
     </div>
     <script>
     function toggleNav() {

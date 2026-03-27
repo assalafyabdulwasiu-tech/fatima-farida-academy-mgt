@@ -11,6 +11,33 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
+    <div id="menu-icon" onclick="toggleNav()">
+    <span></span>
+    <span></span>
+    <span></span>
+</div>
+
+<div id="mySidebar" class="sidebar">
+    <a href="javascript:void(0)" class="closebtn" onclick="toggleNav()">×</a>
+    <div class="sidebar-logo">
+        <img src="IMAGES/logo.jpg.jpeg"FFA Logo" width="100">
+        <h3>FFA ADMIN</h3>
+    </div>
+    <a href="index.html" class="nav-item">Dashboard Home</a>
+        <a href="idgenerator.html" class="nav-item active">ID Card Generator</a>
+        <a href="students-list.html" class="nav-item">Student Database</a>
+        <a href="admissions.html" class="nav-item">New Admissions</a>
+        <a href="gallery.html" class="nav-item">Gallery</a>
+         <a href="results.html" class="nav-item">Results</a>
+          <a href="staffdashboard.html" class="nav-item">staffdashboard</a>
+            <a href="tahfiz.html" class="nav-item">Tahfiz</a>
+             <a href="about.html" class="nav-item">About</a>
+              <a href="admin.html" class="nav-item">Admin</a>
+               <a href="contact.html" class="nav-item">contact</a>
+              <a href="examination.html" class="nav-item">examination</a>
+               <a href="admission form.html" class="nav-item">admission form</a>
+
+</div>
     <div id="splash-screen">
     <div class="splash-content">
         <img src="IMAGES/logo.jpg.jpeg" alt="FFA Logo" class="splash-logo">
@@ -20,26 +47,35 @@
 </div>
 
     <header>
-        <nav class="navbar">
-            <div class="logo">
-                <h1>Fatima Farida <span>Academy</span></h1>
-            </div>
-            <ul class="nav-links">
-                <li><a href="index.html" class="active">Home</a></li>
-                <li><a href="about.html">About Us</a></li>
-                <li><a href="admissions.html">Admissions</a></li>
-                <li><a href="gallery.html">Gallery</a></li>
-                <li><a href="examination.html">Examination</a></li>
-                <li><a href="contact.html">Contact</a></li>
-                <li><a href="admission form.html">Admission form</a></li>
-                <li><a href="results.html">Result</a></li>
-                <li><a href="stafflogin.html">Staff Login</a></li>
-                <li><a href="staffdashboard.html"> Staff Dashboard</a></li>
-                <li><a href="tahfiz.html">Tahfiz</a></li>
-                <li><a href="idgenerator.html">ID Generator</a></li>
-                <li><a href="admin.html">admin</a></li>
-            </ul>
-        </nav>
+        <div class="sidebar">
+    <div class="sidebar-logo">
+        <img src="logo.png" alt="FFA Logo">
+        <h3>FFA Admin</h3>
+    </div>
+    <nav class="sidebar-nav">
+        <a href="index.html" class="nav-item">Dashboard Home</a>
+        <a href="idgenerator.html" class="nav-item active">ID Card Generator</a>
+        <a href="students-list.html" class="nav-item">Student Database</a>
+        <a href="admissions.html" class="nav-item">New Admissions</a>
+        <a href="gallery.html" class="nav-item">Gallery</a>
+         <a href="results.html" class="nav-item">Results</a>
+          <a href="staffdashboard.html" class="nav-item">staffdashboard</a>
+           <a href="stafflogin.html" class="nav-item">stafflogin</a>
+            <a href="tahfiz.html" class="nav-item">Tahfiz</a>
+             <a href="about.html" class="nav-item">About</a>
+              <a href="admin.html" class="nav-item">Admin</a>
+               <a href="contact.html" class="nav-item">contact</a>
+              <a href="examination.html" class="nav-item">examination</a>
+               <a href="admission form.html" class="nav-item">admission form</a>
+
+    </nav>
+    <div class="sidebar-footer">
+        <p>© 2026 Fatima Farida</p>
+    </div>
+</div>
+
+<div class="main-content">
+    </div>
     </header>
 
     <section class="hero">
@@ -66,7 +102,7 @@
             <div class="notice-item pinned">
                 <div class="notice-meta">
                     <span class="badge pin">PINNED</span>
-                    <span class="date">March 03, 2026</span>
+                    <span class="date">March 30, 2026</span>
                 </div>
                 <h3>2nd Term Admission Open</h3>
                 <p>Registration for the new term is ongoing. Please visit the Admission Portal to secure your child's spot.</p>
@@ -76,11 +112,11 @@
             <div class="notice-item">
                 <div class="notice-meta">
                     <span class="badge news">NEWS</span>
-                    <span class="date">Feb 28, 2026</span>
+                    <span class="date">MARCH 30th, 2026</span>
                 </div>
-                <h3>Mid-Term Assessment Results</h3>
-                <p>Tahfiz and Academic results for the mid-term have been uploaded. Use Student IDs to check.</p>
-                <a href="results.html" class="notice-link">Check Results →</a>
+                <h3>End of second term Examination will start on Monday 30th march,2026</h3>
+                <p>all class teachers and form masters are required to complete their students Assessment before next week</p>
+                <a href="examination.html" class="notice-link">Check Time-table →</a>
             </div>
         </div>
     </div>
@@ -134,8 +170,8 @@
 </section>
 
 <div class="teacher-card" data-aos="zoom-in">
-    <img src="..." alt="Teacher">
-    <h4>Dr. Sarah Jenkins</h4>
+    <img src="IMAGES/bakari.jpeg" alt="Teacher">
+    <h4>Mr.Muhammed Issah Bakari</h4>
 </div>
 
 </body>
@@ -146,7 +182,7 @@
         // Show splash for 2 seconds (2000 milliseconds)
         setTimeout(() => {
             splash.classList.add('fade-out');
-        }, 6000);
+        }, 4000);
     });
 </script>
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
@@ -155,6 +191,15 @@
     duration: 1000, // Speed of animation (1 second)
     once: true,     // Whether animation should happen only once
   });
+  function toggleNav() {
+    var sidebar = document.getElementById("mySidebar");
+    
+    if (sidebar.style.left === "0px") {
+        sidebar.style.left = "-250px"; // Hide it
+    } else {
+        sidebar.style.left = "0px";    // Show it
+    }
+}
 </script>
 <a href="https://wa.me/233549004438?text=Hello%20Fatima%20Farida%20Academy,%20I%20have%20an%20enquiry." 
    class="whatsapp-float" 

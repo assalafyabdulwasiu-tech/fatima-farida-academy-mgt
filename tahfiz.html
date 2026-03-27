@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Halaqat Portal | Fatima Farida Academy</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        :root { --quran-green: #1b5e20; --gold: #c6a700; --navy: #002147; }
+        body { font-family: 'Segoe UI', sans-serif; background: #f4f7f4; margin: 0; padding: 20px; }
+        .container { max-width: 900px; margin: 0 auto; background: white; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); overflow: hidden; }
+        
+        header { background: var(--quran-green); color: white; padding: 30px; text-align: center; border-bottom: 5px solid var(--gold); }
+        .status-bar { background: #eee; padding: 10px 20px; font-size: 0.9rem; display: flex; justify-content: space-between; }
+
+        /* Login Screen */
+        #login-overlay { padding: 60px 40px; text-align: center; }
+        .login-card { max-width: 400px; margin: 0 auto; }
+        input, select { width: 100%; padding: 12px; margin: 10px 0; border: 1px solid #ccc; border-radius: 8px; }
+        
+        /* Main Interface */
+        .portal-content { display: none; padding: 40px; }
+        .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        .btn { background: var(--quran-green); color: white; border: none; padding: 15px 30px; border-radius: 8px; cursor: pointer; font-weight: bold; width: 100%; margin-top: 10px; }
+        .btn-admin { background: var(--navy); }
+
+        /* Admin Table */
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; font-size: 0.9rem; }
+        th { background: var(--navy); color: white; padding: 12px; text-align: left; }
+        td { padding: 12px; border-bottom: 1px solid #eee; }
+        .badge { padding: 4px 8px; border-radius: 4px; font-size: 11px; color: white; }
+        /* Add this inside the <style> tag of each file in Group 1 */
+@media screen and (max-width: 600px) {
+    /* 1. Make the main container take full width */
+    .container, .form-card, .dashboard-wrapper {
+        width: 95% !important;
+        padding: 15px !important;
+        margin: 10px auto !important;
+    }
+
+    /* 2. Stack form inputs vertically */
+    input, select, textarea, button {
+        width: 100% !important;
+        font-size: 16px !important; /* Prevents auto-zoom on iPhone */
+        height: 45px !important;
+    }
+
+    /* 3. Special fix for the ID Generator & Results */
+    /* This shrinks the ID card so it fits on a Spark or small phone */
+    .id-card, .result-slip {
+        transform: scale(0.8); 
+        transform-origin: top center;
+        margin-bottom: -40px; 
+    }
+}
+    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <div id="menu-icon" onclick="toggleNav()">
+    <span></span>
+    <span></span>
+    <span></span>
+</div>
+
+<div id="mySidebar" class="sidebar">
+    <a href="javascript:void(0)" class="closebtn" onclick="toggleNav()">×</a>
+    <div class="sidebar-logo">
+        <img src="IMAGES/logo.jpg.jpeg"FFA Logo" width="100">
+        <h3>FFA ADMIN</h3>
+    </div>
+     <a href="index.html" class="nav-item">Dashboard Home</a>
+        <a href="idgenerator.html" class="nav-item active">ID Card Generator</a>
+        <a href="students-list.html" class="nav-item">Student Database</a>
+        <a href="admissions.html" class="nav-item">New Admissions</a>
+        <a href="gallery.html" class="nav-item">Gallery</a>
+         <a href="results.html" class="nav-item">Results</a>
+          <a href="staffdashboard.html" class="nav-item">staffdashboard</a>
+            <a href="tahfiz.html" class="nav-item">Tahfiz</a>
+             <a href="about.html" class="nav-item">About</a>
+              <a href="admin.html" class="nav-item">Admin</a>
+               <a href="contact.html" class="nav-item">contact</a>
+              <a href="examination.html" class="nav-item">examination</a>
+               <a href="admission form.html" class="nav-item">admission form</a>
+
+</div>
+    
+
+<div class="container">
+    <header>
+        <h1 style="margin:0;">Fatima Farida Academy</h1>
+        <p style="margin:5px 0 0 0;">Tahfiz Department & Halaqat Management</p>
+    </header>
+
+    <div id="login-overlay">
+        <div class="login-card">
+            <h3>Staff & Admin Login</h3>
+            <select id="user-role">
+                <option value="">-- Select Your Halaqah/Role --</option>
+                <option value="H1">Halaqah Abu Bakr (Mallam Shu'aib)</option>
+                <option value="H2">Halaqah Umar (Mallam Idris)</option>
+                <option value="H3">Halaqah Uthman (Mallam Salim)</option>
+                <option value="ADMIN">School Administration</option>
+            </select>
+            <input type="password" id="pass" placeholder="Enter Password">
+            <button class="btn" onclick="authenticate()">Login to Portal</button>
+            <p id="err" style="color:red; display:none; margin-top:10px;">Invalid Password for this Halaqah.</p>
+        </div>
+    </div>
+
+    <div id="teacher-ui" class="portal-content">
+        <div class="status-bar">
+            <span>Logged in: <strong id="active-halaqah"></strong></span>
+            <a href="#" onclick="location.reload()">Logout</a>
+        </div>
+        <h3>Daily Hifz Record</h3>
+        <div class="grid">
+            <div><label>Student Name</label><input type="text" id="s-name"></div>
+            <div><label>Surah</label><input type="text" id="s-surah"></div>
+            <div><label>Ayah (Range)</label><input type="text" id="s-ayah" placeholder="e.g. 1-15"></div>
+            <div><label>Quality</label>
+                <select id="s-qual">
+                    <option>Mumtaz (Excellent)</option>
+                    <option>Jayyid Jiddan (Very Good)</option>
+                    <option>Jayyid (Good)</option>
+                    <option>Maqbul (Fair)</option>
+                </select>
+            </div>
+        </div>
+        <button class="btn" onclick="submitProgress()">Submit to Admin</button>
+    </div>
+
+    <div id="admin-ui" class="portal-content">
+        <div class="status-bar">
+            <span>Logged in: <strong>Administrator</strong></span>
+            <a href="#" onclick="location.reload()">Logout</a>
+        </div>
+        <h3>Supervision Dashboard</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Halaqah</th>
+                    <th>Student</th>
+                    <th>Progress</th>
+                    <th>Quality</th>
+                    <th>Date</th>
+                </tr>
+            </thead>
+            <tbody id="admin-table-body">
+                </tbody>
+        </table>
+    </div>
+</div>
+
+<script>
+    // --- CONFIGURATION ---
+    const users = {
+        "H1": { name: "Halaqah Abu Bakr", pass: "ABU123" },
+        "H2": { name: "Halaqah Umar", pass: "UMR456" },
+        "H3": { name: "Halaqah Uthman", pass: "UTH789" },
+        "ADMIN": { name: "Principal", pass: "FFA999" }
+    };
+
+    let currentUser = null;
+
+    function authenticate() {
+        const role = document.getElementById('user-role').value;
+        const pass = document.getElementById('pass').value;
+
+        if (users[role] && users[role].pass === pass) {
+            currentUser = users[role];
+            document.getElementById('login-overlay').style.display = 'none';
+            
+            if (role === "ADMIN") {
+                document.getElementById('admin-ui').style.display = 'block';
+                loadAdminData();
+            } else {
+                document.getElementById('teacher-ui').style.display = 'block';
+                document.getElementById('active-halaqah').innerText = currentUser.name;
+            }
+        } else {
+            document.getElementById('err').style.display = 'block';
+        }
+    }
+
+    function submitProgress() {
+        const data = {
+            halaqah: currentUser.name,
+            student: document.getElementById('s-name').value,
+            surah: document.getElementById('s-surah').value,
+            ayah: document.getElementById('s-ayah').value,
+            quality: document.getElementById('s-qual').value,
+            teacher: currentUser.name 
+        };
+
+        // Your Google Script URL from previous step
+        const scriptURL = 'YOUR_GOOGLE_SCRIPT_URL_HERE';
+
+        fetch(scriptURL, { method: 'POST', body: JSON.stringify(data) })
+        .then(() => {
+            alert("Alhamdulillah! Progress Recorded.");
+            document.getElementById('s-name').value = "";
+        });
+    }
+
+    function loadAdminData() {
+        // In a real setup, this would fetch from Google Sheets.
+        // For now, it shows the layout.
+        const body = document.getElementById('admin-table-body');
+        body.innerHTML = `<tr><td colspan="5" style="text-align:center;">Viewing Live Records from Google Sheets...</td></tr>`;
+    }
+    function toggleNav() {
+    var sidebar = document.getElementById("mySidebar");
+    
+    if (sidebar.style.left === "0px") {
+        sidebar.style.left = "-250px"; // Hide it
+    } else {
+        sidebar.style.left = "0px";    // Show it
+    }
+}
+</script>
+
+</body>
+</html>

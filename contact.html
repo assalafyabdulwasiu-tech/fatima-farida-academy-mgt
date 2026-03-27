@@ -5,14 +5,33 @@
     <title>Contact Us - Fatima Farida Academy</title>
 </head>
 <body>
-    <nav>
-        <div class="logo"><h1>Fatima Farida</h1></div>
-        <ul class="nav-links">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="contact.html">Contact</a></li>
-        </ul>
-    </nav>
+    <div id="menu-icon" onclick="toggleNav()">
+    <span></span>
+    <span></span>
+    <span></span>
+</div>
 
+<div id="mySidebar" class="sidebar">
+    <a href="javascript:void(0)" class="closebtn" onclick="toggleNav()">×</a>
+    <div class="sidebar-logo">
+        <img src="IMAGES/logo.jpg.jpeg"FFA Logo" width="100">
+        <h3>FFA ADMIN</h3>
+    </div>
+    <a href="index.html" class="nav-item">Dashboard Home</a>
+        <a href="idgenerator.html" class="nav-item active">ID Card Generator</a>
+        <a href="students-list.html" class="nav-item">Student Database</a>
+        <a href="admissions.html" class="nav-item">New Admissions</a>
+        <a href="gallery.html" class="nav-item">Gallery</a>
+         <a href="results.html" class="nav-item">Results</a>
+          <a href="staffdashboard.html" class="nav-item">staffdashboard</a>
+            <a href="tahfiz.html" class="nav-item">Tahfiz</a>
+             <a href="about.html" class="nav-item">About</a>
+              <a href="admin.html" class="nav-item">Admin</a>
+               <a href="contact.html" class="nav-item">contact</a>
+              <a href="examination.html" class="nav-item">examination</a>
+               <a href="admission form.html" class="nav-item">admission form</a>
+</div>
+    
     <div class="container">
         <h2 class="section-title">Reach Out to Us</h2>
         <div style="display: flex; gap: 50px; flex-wrap: wrap;">
@@ -33,5 +52,16 @@
             </div>
         </div>
     </div>
+    <script>
+    function toggleNav() {
+    var sidebar = document.getElementById("mySidebar");
+    
+    if (sidebar.style.left === "0px") {
+        sidebar.style.left = "-250px"; // Hide it
+    } else {
+        sidebar.style.left = "0px";    // Show it
+    }
+}
+    </script>
 </body>
 </html>

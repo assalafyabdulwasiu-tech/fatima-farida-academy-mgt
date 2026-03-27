@@ -279,3 +279,84 @@ h1, h2 { font-family: 'Playfair Display', serif; }
     opacity: 0;
     visibility: hidden;
 }
+/* The Hamburger Button */
+#menu-icon {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    cursor: pointer;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+#menu-icon span {
+    width: 30px;
+    height: 4px;
+    background-color: #002147; /* FFA Blue */
+    border-radius: 2px;
+}
+
+/* Sidebar Styling */
+.sidebar {
+    height: 100%;
+    width: 250px;
+    position: fixed;
+    z-index: 999;
+    top: 0;
+    left: -250px; /* Start hidden on the left */
+    background-color: #2ddb7b;
+    overflow-x: hidden;
+    transition: 0.5s; /* Smooth slide speed */
+    padding-top: 60px;
+}
+
+.sidebar a {
+    padding: 15px 25px;
+    text-decoration: none;
+    font-size: 18px;
+    color: white;
+    display: block;
+    transition: 0.3s;
+}
+
+.sidebar a:hover {
+    background-color: #2e7d32; /* FFA Green */
+}
+
+.sidebar .closebtn {
+    position: absolute;
+    top: 10px;
+    right: 25px;
+    font-size: 36px;
+}
+/* --- MOBILE MASTER RULES --- */
+@media screen and (max-width: 768px) {
+    /* 1. The Navigation / Sidebar */
+    .sidebar {
+        width: 100% !important; /* Covers full screen when open */
+        left: -100%;
+    }
+    
+    /* 2. The Gallery & Index Grids */
+    /* This makes your gallery images stack 1 or 2 per row instead of 4 */
+    .gallery-grid, .features-grid {
+        display: grid;
+        grid-template-columns: 1fr !important;
+        gap: 15px;
+    }
+
+    /* 3. The Student List (Table) */
+    /* This allows the table to scroll left-to-right so it doesn't squash */
+    .table-container {
+        overflow-x: auto;
+        display: block;
+        width: 100%;
+    }
+
+    /* 4. Text Sizes */
+    h1 { font-size: 24px !important; }
+    h2 { font-size: 20px !important; }
+    p { font-size: 15px !important; }
+}
