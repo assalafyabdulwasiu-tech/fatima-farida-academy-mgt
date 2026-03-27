@@ -134,8 +134,7 @@ async function generateIDCard() {
 
     document.getElementById('printBtn').innerText = "Connecting to Database...";
 
-    const scriptURL = 'https://script.google.com/macros/s/AKfycbxlLypkU5Tdrpc3bkOa-Gha-TmvhTR9BSA31P3rqImpghEpc-kNM3dXgX7JnZi2faR3/exec'; 
-    
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbxlLypkU5Tdrpc3bkOa-Gha-TmvhTR9BSA31P3rqImpghEpc-kNM3dXgX7JnZi2faR3/exec'
     // Send data to Google and WAIT for the sequential ID
     try {
         const response = await fetch(scriptURL, {
