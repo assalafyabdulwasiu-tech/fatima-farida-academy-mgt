@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Report Portal | Fatima Farida Academy</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        :root {
+            --academy-green: #2e7d32;
+            --academy-dark: #002147;
+            --table-border: #ccd1d9;
+        }
+
+        body { font-family: 'Arial', sans-serif; background: #f4f4f4; padding: 20px; }
+        
+        /* Login Box */
+        .login-box { 
+            max-width: 400px; margin: 100px auto; background: white; 
+            padding: 30px; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            text-align: center;
+        }
+
+        /* Report Slip Container */
+        .report-slip { 
+            display: none; max-width: 900px; margin: 0 auto; background: white; 
+            padding: 30px; border: 1px solid #999; position: relative;
+        }
+
+        .header-table { width: 100%; border-bottom: 2px solid var(--academy-green); margin-bottom: 15px; }
+        .logo-section img { width: 80px; }
+        .school-name { color: var(--academy-green); font-size: 24px; font-weight: bold; margin: 0; }
+        
+        .student-info-grid { 
+            display: grid; grid-template-columns: repeat(4, 1fr); 
+            border: 1px solid var(--table-border); margin-bottom: 20px;
+        }
+        .info-cell { padding: 8px; border: 0.5px solid var(--table-border); font-size: 13px; }
+        .info-label { font-weight: bold; color: #555; display: block; font-size: 11px; }
+
+        .results-table { width: 100%; border-collapse: collapse; margin-bottom: 20px; }
+        .results-table th { background: var(--academy-green); color: white; padding: 10px; font-size: 12px; }
+        .results-table td { border: 1px solid var(--table-border); padding: 8px; text-align: center; font-size: 13px; }
+        .subject-name { text-align: left !important; font-weight: bold; }
+
+        .summary-box { 
+            display: grid; grid-template-columns: 1fr 1fr; gap: 20px; 
+            border: 1px solid var(--table-border); padding: 15px; margin-bottom: 20px;
+        }
+
+        .bill-table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        .bill-table td { border: 1px solid var(--table-border); padding: 10px; background: #f9f9f9; }
+
+        .btn { padding: 12px 25px; border-radius: 5px; cursor: pointer; font-weight: bold; border: none; }
+        .btn-check { background: var(--academy-green); color: white; width: 100%; }
+        .btn-print { background: var(--academy-dark); color: white; margin-top: 20px; }
+
+        @media print { .btn-print, .login-box { display: none; } .report-slip { display: block; border: none; } }
+    </style>
+</head>
+<body>
+
+    <div id="login-section" class="login-box">
+        <h2 style="color: var(--academy-green);">Terminal Report Login</h2>
+        <input type="text" id="studentID" placeholder="Enter Index Number" 
+               style="width:100%; padding:10px; margin:20px 0; border:1px solid #ccc;">
+        <button class="btn btn-check" onclick="generateReport()">Access Result</button>
+        <p id="error" style="color:red; display:none; margin-top:10px;">Student Record Not Found</p>
+    </div>
+
+    <div id="report-view" class="report-slip">
+        <table class="header-table">
+            <tr>
+                <td class="logo-section"><img src="https://via.placeholder.com/80x80?text=LOGO" alt="Logo"></td>
+                <td>
+                    <h1 class="school-name">FATIMA FARIDA ACADEMY</h1>
+                    <p style="margin:0; font-style:italic;">Read in the Name of Thy Lord</p>
+                    <p style="margin:0; font-size:12px;">ACP Kwabenya KNUST junction, Accra | 0559447171</p>
+                </td>
+            </tr>
+        </table>
+
+        <div class="student-info-grid">
+            <div class="info-cell"><span class="info-label">NAME</span><span id="name"></span></div>
+            <div class="info-cell"><span class="info-label">INDEX NO.</span><span id="index"></span></div>
+            <div class="info-cell"><span class="info-label">YEAR</span><span>2025/2026</span></div>
+            <div class="info-cell"><span class="info-label">TERM</span><span>1st</span></div>
+            <div class="info-cell"><span class="info-label">CLASS</span><span id="class"></span></div>
+            <div class="info-cell"><span class="info-label">NO. ON ROLL</span><span id="roll"></span></div>
+            <div class="info-cell"><span class="info-label">POSITION</span><span id="pos"></span></div>
+            <div class="info-cell"><span class="info-label">NEXT TERM BEGINS</span><span>02nd JANUARY, 2025</span></div>
+        </div>
+
+        <table class="results-table">
+            <thead>
+                <tr>
+                    <th>SUBJECTS</th>
+                    <th>Class Score (50%)</th>
+                    <th>Exam Score (50%)</th>
+                    <th>Total Score (100%)</th>
+                    <th>Grade</th>
+                    <th>Remark</th>
+                </tr>
+            </thead>
+            <tbody id="results-body"></tbody>
+        </table>
+
+        <div class="summary-box">
+            <div>
+                <p><strong>ATTENDANCE:</strong> <span id="att"></span> / 75</p>
+                <p><strong>CONDUCT:</strong> <span id="conduct"></span></p>
+                <p><strong>INTEREST:</strong> <span id="interest"></span></p>
+            </div>
+            <div>
+                <p><strong>ATTITUDE:</strong> Good at School work</p>
+                <p><strong>TEACHER'S REMARK:</strong> <span id="rem"></span></p>
+            </div>
+        </div>
+
+        <table class="bill-table">
+            <tr>
+                <td><strong>Next Term Fees:</strong> GH₵ <span id="next-fee"></span></td>
+                <td><strong>Arrears:</strong> GH₵ <span id="arrears"></span></td>
+                <td><strong>Total Payable:</strong> GH₵ <span id="total-pay"></span></td>
+            </tr>
+        </table>
+
+        <div style="text-align: right; margin-top: 40px;">
+            <p>__________________________</p>
+            <p><strong>Head Teacher's Signature</strong></p>
+        </div>
+
+        <button class="btn btn-print" onclick="window.print()">Print Report Slip</button>
+    </div>
+
+    <script>
+        // Data based on your uploaded result slip image
+        const database = {
+            "FFA-2025-01": {
+                name: "ALHASSAN KEISAN KUNATE",
+                class: "B.S. 2",
+                roll: "19",
+                pos: "15th",
+                attendance: "61",
+                conduct: "Behaviour needs improvement",
+                interest: "Sports and Practical work",
+                teacherRemark: "Needs to focus more on academic work",
+                nextFee: "6400.00",
+                arrears: "4750.00",
+                subjects: [
+                    { n: "MATHEMATICS", c: 28, e: 10, g: 8, r: "LOWEST" },
+                    { n: "ENGLISH LANG.", c: 40, e: 10, g: 6, r: "LOW AVERAGE" },
+                    { n: "GEN. SCIENCE", c: 38, e: 11, g: 7, r: "LOW" },
+                    { n: "SOCIAL STUDIES", c: 22, e: 17, g: 8, r: "LOWEST" },
+                    { n: "R.M.E", c: 27, e: 21, g: 7, r: "LOW" },
+                    { n: "ISLAMIC STUDIES", c: 25, e: 13, g: 8, r: "LOWEST" },
+                    { n: "COMPUTING", c: 34, e: 20, g: 6, r: "LOW AVERAGE" },
+                    { n: "QUR'AN", c: 45, e: 45, g: 1, r: "HIGHEST" },
+                    { n: "ARABIC LANG.", c: 28, e: 23, g: 6, r: "LOW AVERAGE" },
+                    { n: "GHANAIAN LANG.", c: 37, e: 18, g: 5, r: "AVERAGE" }
+                ]
+            }
+        };
+
+        function generateReport() {
+            const id = document.getElementById('studentID').value;
+            const data = database[id];
+            
+            if(data) {
+                document.getElementById('login-section').style.display = 'none';
+                document.getElementById('report-view').style.display = 'block';
+                
+                document.getElementById('name').innerText = data.name;
+                document.getElementById('index').innerText = id;
+                document.getElementById('class').innerText = data.class;
+                document.getElementById('roll').innerText = data.roll;
+                document.getElementById('pos').innerText = data.pos;
+                document.getElementById('att').innerText = data.attendance;
+                document.getElementById('conduct').innerText = data.conduct;
+                document.getElementById('interest').innerText = data.interest;
+                document.getElementById('rem').innerText = data.teacherRemark;
+                
+                // Fees
+                document.getElementById('next-fee').innerText = data.nextFee;
+                document.getElementById('arrears').innerText = data.arrears;
+                document.getElementById('total-pay').innerText = (parseFloat(data.nextFee) + parseFloat(data.arrears)).toFixed(2);
+
+                let rows = "";
+                data.subjects.forEach(s => {
+                    rows += `<tr>
+                        <td class="subject-name">${s.n}</td>
+                        <td>${s.c}</td>
+                        <td>${s.e}</td>
+                        <td>${s.c + s.e}</td>
+                        <td>${s.g}</td>
+                        <td>${s.r}</td>
+                    </tr>`;
+                });
+                document.getElementById('results-body').innerHTML = rows;
+            } else {
+                document.getElementById('error').style.display = 'block';
+            }
+        }
+    </script>
+</body>
+</html>

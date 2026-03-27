@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ID Generator & Card Designer | Fatima Farida Academy</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        :root { --ffa-blue: #002147; --ffa-green: #2e7d32; --gold: #FFD700; }
+        body { font-family: 'Segoe UI', sans-serif; background: #f0f2f5; padding: 20px; display: flex; flex-direction: column; align-items: center; }
+        
+        /* Form Styling */
+        .gen-container { max-width: 450px; background: white; padding: 30px; border-radius: 15px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); text-align: center; margin-bottom: 30px; }
+        input, select { width: 100%; padding: 12px; margin: 10px 0; border: 1px solid #ddd; border-radius: 8px; box-sizing: border-box; }
+        .btn-gen { background: var(--ffa-blue); color: white; border: none; padding: 15px; width: 100%; border-radius: 8px; cursor: pointer; font-weight: bold; }
+
+        /* THE ID CARD DESIGN */
+        #id-card-preview { display: none; width: 350px; height: 220px; background: white; border-radius: 12px; position: relative; overflow: hidden; box-shadow: 0 15px 35px rgba(0,0,0,0.2); border: 1px solid #ddd; }
+        
+        .card-header { background: var(--ffa-blue); height: 60px; display: flex; align-items: center; padding: 0 15px; border-bottom: 4px solid var(--gold); }
+        .card-header h2 { color: white; font-size: 14px; margin: 0; text-align: left; line-height: 1.2; }
+        
+        .card-body { display: flex; padding: 15px; }
+        .photo-box { width: 80px; height: 100px; background: #eee; border: 2px solid var(--ffa-blue); display: flex; align-items: center; justify-content: center; font-size: 10px; color: #999; }
+        
+        .details { margin-left: 15px; text-align: left; }
+        .details p { margin: 2px 0; font-size: 11px; color: #555; font-weight: bold; }
+        .details span { display: block; color: var(--ffa-blue); font-size: 13px; margin-bottom: 5px; text-transform: uppercase; }
+        
+        .card-footer { position: absolute; bottom: 0; width: 100%; background: var(--ffa-green); color: white; font-size: 10px; text-align: center; padding: 5px 0; }
+        
+        .btn-print { margin-top: 20px; background: #333; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; }
+
+        /* PRINT LOGIC */
+        @media print {
+            body * { visibility: hidden; }
+            #id-card-preview, #id-card-preview * { visibility: visible; }
+            #id-card-preview { position: absolute; left: 0; top: 0; box-shadow: none; border: 1px solid #000; }
+            .btn-print { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="gen-container">
+    <h2>Student ID & Card Creator</h2>
+    <input type="text" id="stuName" placeholder="Full Student Name">
+    <select id="stuClass">
+        <option value="">-- Select Class --</option>
+        <option value="BS1">B.S. 1</option><option value="BS2">B.S. 2</option>
+        <option value="BS3">B.S. 3</option><option value="BS4">B.S. 4</option>
+        <option value="BS5">B.S. 5</option><option value="BS6">B.S. 6</option>
+        <option value="BS7">B.S. 7</option><option value="BS8">B.S. 8</option>
+    </select>
+    <button class="btn-gen" onclick="generateIDCard()">Create ID Card</button>
+    <div style="text-align:left; margin-top:10px;">
+    <label style="font-size:12px; font-weight:bold;">Upload School Logo:</label>
+    <input type="file" id="logoInput" accept="image/*" onchange="previewImage(this, 'card-logo')">
+    
+    <label style="font-size:12px; font-weight:bold;">Upload Student Photo:</label>
+    <input type="file" id="photoInput" accept="image/*" onchange="previewImage(this, 'card-photo')">
+</div>
+</div>
+
+<div id="id-card-preview">
+    <div class="card-header">
+        <img id="card-logo" src="https://via.placeholder.com/40" style="width:40px; height:40px; border-radius:50%; margin-right:10px; background:white; object-fit:contain;">
+        <h2>FATIMA FARIDA<br>ACADEMY</h2>
+    </div>
+    
+    <div class="card-body">
+        <div class="photo-box" style="overflow:hidden;">
+            <img id="card-photo" src="" style="width:100%; height:100%; object-fit:cover; display:none;">
+            <span id="photo-text">PHOTO</span>
+        </div>
+        
+        <div class="details">
+            <p>NAME</p>
+            <span id="card-name">---</span>
+            <p>ID NUMBER</p>
+            <span id="card-id" style="color: red; font-family: monospace;">---</span>
+            <p>CLASS</p>
+            <span id="card-class">---</span>
+        </div>
+    </div>
+    
+    <div class="card-footer">
+        "Read in the Name of Thy Lord" | 0559447171
+    </div>
+</div>
+    
+    <div class="card-body">
+        <div class="photo-box">PHOTO HERE</div>
+        <div class="details">
+            <p>NAME</p>
+            <span id="card-name">---</span>
+            <p>ID NUMBER</p>
+            <span id="card-id" style="color: red; font-family: monospace;">---</span>
+            <p>CLASS</p>
+            <span id="card-class">---</span>
+        </div>
+    </div>
+    
+    <div class="card-footer">
+        "Read in the Name of Thy Lord" | 0559447171
+    </div>
+</div>
+
+<button id="printBtn" class="btn-print" style="display:none;" onclick="window.print()">Print ID Card</button>
+<script>
+    function previewImage(input, targetId) {
+    const file = input.files[0];
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            const imgElement = document.getElementById(targetId);
+            imgElement.src = e.target.result;
+            imgElement.style.display = 'block';
+            if(targetId === 'card-photo') {
+                document.getElementById('photo-text').style.display = 'none';
+            }
+        }
+        reader.readAsDataURL(file);
+    }
+}
+async function generateIDCard() {
+    const name = document.getElementById('stuName').value;
+    const cls = document.getElementById('stuClass').value;
+    const year = new Date().getFullYear();
+    
+    if (!name || !cls) {
+        alert("Please fill all details");
+        return;
+    }
+
+    document.getElementById('printBtn').innerText = "Connecting to Database...";
+
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbxlLypkU5Tdrpc3bkOa-Gha-TmvhTR9BSA31P3rqImpghEpc-kNM3dXgX7JnZi2faR3/exec'; 
+    
+    // Send data to Google and WAIT for the sequential ID
+    try {
+        const response = await fetch(scriptURL, {
+            method: 'POST',
+            body: JSON.stringify({ 
+                type: "registration", 
+                studentName: name, 
+                studentClass: cls,
+                year: year
+            })
+        });
+        
+        const result = await response.json();
+        const finalID = result.id; // This is the ID Google generated (e.g., FFA-2026-BS1-005)
+
+        // Update Card UI
+        document.getElementById('card-name').innerText = name;
+        document.getElementById('card-id').innerText = finalID;
+        document.getElementById('card-class').innerText = cls;
+
+        // Show Card
+        document.getElementById('id-card-preview').style.display = 'block';
+        document.getElementById('printBtn').style.display = 'inline-block';
+        document.getElementById('printBtn').innerText = "Print ID Card";
+
+    } catch (error) {
+        alert("Error: Make sure you are connected to the internet.");
+        document.getElementById('printBtn').innerText = "Try Again";
+    }
+}
+ 
+  </script>  
+
+</body>
+</html>

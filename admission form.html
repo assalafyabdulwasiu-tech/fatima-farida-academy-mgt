@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pupil Admission Form | Fatima Farida Academy</title>
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        :root {
+            --academy-green: #4CAF50;
+            --academy-blue: #002147;
+            --soft-white: #ffffff;
+            --accent-gold: #FFD700;
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f2f5;
+            padding: 20px;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 950px;
+            margin: 0 auto;
+            background: var(--soft-white);
+            padding: 50px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        /* HEADER SECTION */
+        .school-header {
+            text-align: center;
+            border-bottom: 4px solid var(--academy-green);
+            padding-bottom: 25px;
+            margin-bottom: 40px;
+        }
+
+        .school-header h1 { color: var(--academy-blue); font-size: 2.2rem; margin: 0; }
+        .school-header p { font-style: italic; color: #555; font-size: 1.1rem; }
+        .form-title {
+            background: var(--academy-blue);
+            color: white;
+            display: inline-block;
+            padding: 8px 30px;
+            border-radius: 50px;
+            margin-top: 15px;
+            font-weight: bold;
+        }
+
+        /* FORM STYLING */
+        .section-bar {
+            background: var(--academy-green);
+            color: white;
+            padding: 12px 20px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin: 40px 0 20px 0;
+            border-radius: 4px;
+        }
+
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 25px; }
+        .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; }
+
+        .input-box { margin-bottom: 20px; display: flex; flex-direction: column; }
+        label { font-size: 0.95rem; font-weight: 600; margin-bottom: 8px; color: #444; }
+        input, select, textarea {
+            padding: 12px;
+            border: 1px solid #ccd1d9;
+            border-radius: 6px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+        input:focus { border-color: var(--academy-blue); outline: none; }
+
+        table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+        th, td { border: 1px solid #ddd; padding: 12px; text-align: left; }
+        th { background: #f8f9fa; font-size: 0.85rem; }
+
+        .terms-box {
+            background: #fffbe6;
+            border: 1px solid #ffe58f;
+            padding: 25px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            max-height: 250px;
+            overflow-y: scroll;
+            margin-bottom: 20px;
+        }
+
+        .footer-nav {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 50px;
+            border-top: 1px solid #eee;
+            padding-top: 20px;
+        }
+
+        .btn-main {
+            background: var(--academy-blue);
+            color: white;
+            padding: 15px 40px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .btn-main:hover { background: #003a7a; transform: translateY(-2px); }
+
+        @media (max-width: 768px) { .grid-2, .grid-3 { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header class="school-header">
+        <h1>FATIMA FARIDA ACADEMY</h1>
+        <p>"Read in the name of thy Lord"</p>
+        <div class="form-title">PUPIL ADMISSION FORM</div>
+        <p style="margin-top: 15px; font-size: 0.9rem;">Loc: ACP Kwabenya KNUST Accra City Campus Junction</p>
+    </header>
+
+    <form action="#">
+        
+        <div class="section-bar">Personal Details</div>
+        <div class="grid-2">
+            <div class="input-box"><label>Surname</label><input type="text" required></div>
+            <div class="input-box"><label>First Name</label><input type="text" required></div>
+             <div class="input-box"><label>other Name</label><input type="text" required></div>
+            <div class="input-box"><label>Date of Birth</label><input type="date"></div>
+            <div class="input-box"><label>place of Birth</label><input type="date"></div>
+            <div class="input-box"><label>Gender</label>
+                <select><option>Male</option><option>Female</option></select>
+            </div>
+            <div class="input-box"><label>Nationality</label><input type="text"></div>
+            <div class="input-box"><label>Tribe / Spoken Language</label><input type="text"></div>
+        </div>
+        <div class="input-box"><label>Who does the child live with:</label>
+                <select><option>both parents</option><option>Father</option><option>Mother</option><option>other</option></select>
+            </div>
+            <div class="input-box"><label>Are parents living together:</label>
+                <select><option>Yes </option><option>No</option></select>
+            </div>
+
+
+        <div class="section-bar">Previous Schooling</div>
+        <table>
+            <tr><th>Name of School</th><th>Address</th><th>Dates Attended</th><th>Last Class</th></tr>
+            <tr>
+                <td><input type="text" style="width:100%"></td>
+                <td><input type="text" style="width:100%"></td>
+                <td><input type="text" placeholder="From - To" style="width:100%"></td>
+                <td><input type="text" style="width:100%"></td>
+            </tr>
+        </table>
+
+        <div class="section-bar">Parent / Guardian Information</div>
+        <div class="grid-2">
+            <div class="input-box"><label>Father's Name</label><input type="text"></div>
+            <div class="input-box"><label>Father's address</label><input type="text"></div>
+            <div class="input-box"><label>Father's tribe</label><input type="text"></div>
+            <div class="input-box"><label>Father's Nationality</label><input type="text"></div>
+            <div class="input-box"><label>Father's Occupation</label><input type="text"></div>
+            <div class="input-box"><label>Mother's Name</label><input type="text"></div>
+            <div class="input-box"><label>Mother's Occupation</label><input type="text"></div>
+            <div class="input-box"><label>Primary Phone Number</label><input type="tel" required></div>
+            <div class="input-box"><label>Email Address</label><input type="email"></div>
+            <div class="input-box" style="grid-column: span 2;"><label>Home Address</label><textarea rows="2"></textarea></div>
+        </div>
+
+        <div class="section-bar">Child Development & Behavior</div>
+        <div class="input-box"><label>How does your child respond to learning at home?</label><textarea rows="2"></textarea></div>
+        <div class="input-box"><label>What are some of the wrongs your child is fond of doing?</label><textarea rows="2"></textarea></div>
+        <div class="input-box"><label> what approach do you use to correct the wrongs stated above?</label><textarea rows="2"></textarea></div>
+        <div class="input-box"><label>How is your child's attitude towards other children </label><textarea rows="2"></textarea></div>
+
+
+        <div class="section-bar">Arabic Language Proficiency</div>
+        <div class="grid-3">
+            <div class="input-box"><label>Speak Arabic</label>
+                <select><option>None</option><option>Poor</option><option>Fair</option><option>Good</option><option>Excellent</option></select>
+            </div>
+            <div class="input-box"><label>Read Arabic</label>
+                <select><option>None</option><option>Poor</option><option>Fair</option><option>Good</option><option>Excellent</option></select>
+            </div>
+            <div class="input-box"><label>Write Arabic</label>
+                <select><option>None</option><option>Poor</option><option>Fair</option><option>Good</option><option>Excellent</option></select>
+            </div>
+        </div>
+
+        <div class="section-bar">Child's Health Record</div>
+        <div class="grid-2">
+            <div class="input-box"><label>Are Eyesight/Hearing Normal?</label>
+                <select><option>Yes</option><option>No (Specify below)</option></select>
+            </div>
+            <div class="input-box"><label>Any Allergies / Medications?</label><input type="text" placeholder="Specify details"></div>
+            <div class="input-box" style="grid-column: span 2;"><label>Preferred Hospital & Doctor Contact</label><input type="text"></div>
+        </div>
+        <div class="section-bar">Emergency and security details </div>
+        <div class="grid-2">
+
+        </div>
+
+
+        <div class="section-bar">Security & Pickup Authorization</div>
+        <p style="font-size: 0.85rem; color: #666; margin-bottom: 10px;">Please provide names of persons authorized to pick up child.</p>
+        <div class="grid-2">
+            <div class="input-box"><label>Authorized Person 1 Name</label><input type="text"></div>
+            <div class="input-box"><label>Relation / Phone</label><input type="text"></div>
+            <div class="input-box"><label>Authorized Person 2 Name</label><input type="text"></div>
+            <div class="input-box"><label>Relation / Phone</label><input type="text"></div>
+        </div>
+
+        <div class="section-bar">Terms and Conditions</div>
+        <div class="terms-box">
+            <ol>
+                <li>All fees on the bill (including toiletries) must be paid up front.</li>
+                <li>Special payment schedules must be agreed upon with administration.</li>
+                <li>Weekend school registration must meet the weekend team separately.</li>
+                <li>An additional uniform must be kept in the child's bag for security reasons.</li>
+                <li>Female dress code requires a white veil.</li>
+                <li>School closes at 3:00pm (Weekdays) and 2:00pm (Weekends).</li>
+                <li>Parents must ensure uniforms are well ironed and nails kept short.</li>
+            </ol>
+        </div>
+        
+        <div class="input-box">
+            <label><input type="checkbox" required> I declare that all information provided is correct and I abide by the school regulations.</label>
+        </div>
+
+        <button type="submit" class="btn-main">Submit Digital Admission</button>
+    </header>
+
+    <div class="footer-nav">
+        <a href="index.html" style="color: var(--academy-blue); text-decoration: none;">&larr; Back to Home</a>
+        <span style="color: #999; font-size: 0.8rem;">Fatima Farida Academy © 2026</span>
+    </div>
+</form>
+</div>
+
+</body>
+</html>

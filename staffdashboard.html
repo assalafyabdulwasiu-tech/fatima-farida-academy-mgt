@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Examination Results - Fatima Farida Academy</title>
+    <style>
+        .search-container {
+            background: var(--white);
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            margin-bottom: 40px;
+        }
+        .result-slip {
+            background: white;
+            padding: 40px;
+            border: 2px solid var(--primary-green);
+            border-radius: 5px;
+            position: relative;
+        }
+        .slip-header {
+            text-align: center;
+            border-bottom: 2px solid #eee;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+        }
+        .student-meta {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+        .grade-pass { color: var(--primary-green); font-weight: bold; }
+        .grade-honor { color: gold; text-shadow: 1px 1px 1px #000; }
+        
+        @media print {
+            nav, .search-container, footer, .print-btn { display: none; }
+            .result-slip { border: 1px solid #000; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo"><h1>Fatima Farida <span>Academy</span></h1></div>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="examination.html">Exams</a></li>
+            <li><a href="results.html" class="active">Check Results</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <h2 class="section-title">Online Result Portal</h2>
+
+        <div class="search-container">
+            <p>Enter Student Index Number to view Termly Report</p>
+            <div style="margin-top: 15px;">
+                <input type="text" placeholder="FFA/2026/000" style="padding: 12px; width: 250px; border: 1px solid #ddd; border-radius: 4px;">
+                <button class="btn" style="padding: 11px 25px;">View Result</button>
+            </div>
+        </div>
+
+        <div class="result-slip">
+            <div class="slip-header">
+                <h3>FATIMA FARIDA ACADEMY</h3>
+                <p>Accra Kwabenya KNUST Junction | P.O. Box LG 1077</p>
+                <h4>OFFICIAL TERMINAL REPORT</h4>
+            </div>
+
+            <div class="student-meta">
+                <div>
+                    <p>Name: <span style="font-weight: 400;">Musa Ibrahim</span></p>
+                    <p>Class: <span style="font-weight: 400;">JHS 2</span></p>
+                </div>
+                <div style="text-align: right;">
+                    <p>Index: <span style="font-weight: 400;">FFA/2026/104</span></p>
+                    <p>Term: <span style="font-weight: 400;">First Term</span></p>
+                </div>
+            </div>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Subject</th>
+                        <th>Class Score (30%)</th>
+                        <th>Exam Score (70%)</th>
+                        <th>Total (100%)</th>
+                        <th>Grade</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Mathematics</td>
+                        <td>25</td>
+                        <td>62</td>
+                        <td>87</td>
+                        <td class="grade-pass">A1</td>
+                    </tr>
+                    <tr>
+                        <td>English Language</td>
+                        <td>28</td>
+                        <td>58</td>
+                        <td>86</td>
+                        <td class="grade-pass">A1</td>
+                    </tr>
+                    <tr>
+                        <td>Integrated Science</td>
+                        <td>22</td>
+                        <td>50</td>
+                        <td>72</td>
+                        <td class="grade-pass">B2</td>
+                    </tr>
+                    <tr>
+                        <td>Tahfiz (Hifz)</td>
+                        <td>30</td>
+                        <td>68</td>
+                        <td>98</td>
+                        <td class="grade-honor">A1+</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div style="margin-top: 30px; padding: 15px; background: #f9f9f9; border-radius: 5px;">
+                <p><strong>Class Teacher's Remark:</strong> An excellent performance. Keep up the focus on Science.</p>
+                <p><strong>Headmaster's Signature:</strong> ____________________</p>
+            </div>
+            
+            <button class="print-btn btn" onclick="window.print()" style="margin-top: 20px; background: #444;">Download/Print PDF</button>
+        </div>
+    </div>
+
+    <footer>
+        <p>Fatima Farida Academy Results Portal &copy; 2026</p>
+    </footer>
+
+</body>
+</html>
